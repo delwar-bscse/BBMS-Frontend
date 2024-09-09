@@ -1,17 +1,21 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import Layout from "../../components/shared/Layout/Layout";
+// import moment from "moment";
+import { useSelector } from "react-redux";
 import API from "../../services/API";
-import moment from "moment";
+import { Link } from "react-router-dom";
 
-const Donar = () => {
+const Organisations = () => {
+  // get current user
+  const { user } = useSelector((state) => state.auth);
   const [data, setData] = useState([]);
-  //find donar records
-  const getDonars = async () => {
+  //find org records
+  const getOrg = async () => {
     try {
-      const { data } = await API.get("/inventory/get-donars");
-      //   console.log(data);
+      const { data } = await API.get("/inventory/get-orgnaisation");
       if (data?.success) {
-        setData(data?.donars);
+        setData(data?.organisations);
       }
     } catch (error) {
       console.log(error);
@@ -19,8 +23,8 @@ const Donar = () => {
   };
 
   useEffect(() => {
-    getDonars();
-  }, []);
+    getOrg();
+  }, [user]);
 
   return (
     <Layout>
@@ -30,16 +34,18 @@ const Donar = () => {
             <th scope="col">Name</th>
             <th scope="col">Email</th>
             <th scope="col">Phone</th>
-            <th scope="col">Date</th>
+            <th scope="col">Address</th>
+            <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
           {data?.map((record) => (
             <tr key={record._id}>
-              <td>{record.name || record.organisationName + " (ORG)"}</td>
+              <td>{record.organisationName}</td>
               <td>{record.email}</td>
               <td>{record.phone}</td>
-              <td>{moment(record.createdAt).format("DD/MM/YYYY hh:mm A")}</td>
+              <td>{record.address}</td>
+              <td><Link to={`/org-details/${record._id}`} className="btn btn-secondary btn-sm">Details</Link></td>
             </tr>
           ))}
         </tbody>
@@ -48,4 +54,4 @@ const Donar = () => {
   );
 };
 
-export default Donar;
+export default Organisations;

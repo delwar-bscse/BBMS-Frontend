@@ -1,21 +1,17 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
-import Layout from "./../../components/shared/Layout/Layout";
-// import moment from "moment";
-import { useSelector } from "react-redux";
+import Layout from "../../components/shared/Layout/Layout";
 import API from "../../services/API";
-import { Link } from "react-router-dom";
+// import moment from "moment";
 
-const OrganisationPage = () => {
-  // get current user
-  const { user } = useSelector((state) => state.auth);
+const Donars = () => {
   const [data, setData] = useState([]);
-  //find org records
-  const getOrg = async () => {
+  //find Donars records
+  const getDonars = async () => {
     try {
-      const { data } = await API.get("/inventory/get-orgnaisation");
+      const { data } = await API.get("/inventory/get-donars");
+      //   console.log(data);
       if (data?.success) {
-        setData(data?.organisations);
+        setData(data?.donars);
       }
     } catch (error) {
       console.log(error);
@@ -23,8 +19,8 @@ const OrganisationPage = () => {
   };
 
   useEffect(() => {
-    getOrg();
-  }, [user]);
+    getDonars();
+  }, []);
 
   return (
     <Layout>
@@ -35,17 +31,17 @@ const OrganisationPage = () => {
             <th scope="col">Email</th>
             <th scope="col">Phone</th>
             <th scope="col">Address</th>
-            <th scope="col">Action</th>
+            {/* <th scope="col">Date</th> */}
           </tr>
         </thead>
         <tbody>
           {data?.map((record) => (
             <tr key={record._id}>
-              <td>{record.organisationName}</td>
+              <td>{record.name || record.organisationName + " (ORG)"}</td>
               <td>{record.email}</td>
               <td>{record.phone}</td>
               <td>{record.address}</td>
-              <td><Link to={`/org-details/${record._id}`} className="btn btn-secondary btn-sm">Details</Link></td>
+              {/* <td>{moment(record.createdAt).format("DD/MM/YYYY hh:mm A")}</td> */}
             </tr>
           ))}
         </tbody>
@@ -54,4 +50,4 @@ const OrganisationPage = () => {
   );
 };
 
-export default OrganisationPage;
+export default Donars;

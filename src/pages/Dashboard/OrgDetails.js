@@ -1,14 +1,13 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
-import Header from "../../components/shared/Layout/Header";
 import API from "./../../services/API";
-import moment from "moment";
 import { useParams } from "react-router-dom";
 import Layout from "../../components/shared/Layout/Layout";
 
 const OrgDetails = () => {
   const {id} = useParams();
   const [data, setData] = useState([]);
-  const [inventoryData, setInventoryData] = useState([]);
+  // const [inventoryData, setInventoryData] = useState([]);
   const colors = [
     "#884A39",
     "#C38154",
@@ -41,7 +40,6 @@ const OrgDetails = () => {
   
   return (
     <Layout>
-      {/* <Header /> */}
       <div className="d-flex flex-row flex-wrap">
         {data?.map((record, i) => (
           <div

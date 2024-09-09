@@ -6,17 +6,17 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ProtectedRoute from "./components/Routes/ProtectedRoute";
 import PublicRoute from "./components/Routes/PublicRoute";
-import Donar from "./pages/Dashboard/Donar";
-import Hospitals from "./pages/Dashboard/Hospitals";
-import OrganisationPage from "./pages/Dashboard/OrganisationPage";
-import Consumer from "./pages/Dashboard/Consumer";
-import Donation from "./pages/Donation";
 import Analytics from "./pages/Dashboard/Analytics";
 import DonarList from "./pages/Admin/DonarList";
 import HospitalList from "./pages/Admin/HospitalList";
 import OrgList from "./pages/Admin/OrgList";
 import AdminHome from "./pages/Admin/AdminHome";
 import OrgDetails from "./pages/Dashboard/OrgDetails";
+import Donation from "./pages/Donation";
+import Consumer from "./pages/Consumer";
+import Organisations from "./pages/Dashboard/Organisations";
+import Donars from "./pages/Dashboard/Donars";
+import Hospitals from "./pages/Dashboard/Hospitals";
 
 function App() {
   return (
@@ -100,7 +100,7 @@ function App() {
           path="/orgnaisation"
           element={
             <ProtectedRoute>
-              <OrganisationPage />
+              <Organisations />
             </ProtectedRoute>
           }
         />
@@ -108,7 +108,7 @@ function App() {
           path="/donar"
           element={
             <ProtectedRoute>
-              <Donar />
+              <Donars />
             </ProtectedRoute>
           }
         />
