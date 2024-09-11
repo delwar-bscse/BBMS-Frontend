@@ -5,7 +5,7 @@ import moment from "moment";
 import API from "../services/API";
 import { useSelector } from "react-redux";
 
-const Consumer = () => {
+const Collection = () => {
   const { user } = useSelector((state) => state.auth);
   const [data, setData] = useState([]);
   //find donar records
@@ -62,4 +62,4 @@ const Consumer = () => {
   );
 };
 
-export default Consumer;
+export default Collection;

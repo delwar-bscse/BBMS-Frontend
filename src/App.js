@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import HomePage from "./pages/HomePage";
+// import HomePage from "./pages/HomePage";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import { ToastContainer } from "react-toastify";
@@ -13,10 +13,11 @@ import OrgList from "./pages/Admin/OrgList";
 import AdminHome from "./pages/Admin/AdminHome";
 import OrgDetails from "./pages/Dashboard/OrgDetails";
 import Donation from "./pages/Donation";
-import Consumer from "./pages/Consumer";
 import Organisations from "./pages/Dashboard/Organisations";
 import Donars from "./pages/Dashboard/Donars";
 import Hospitals from "./pages/Dashboard/Hospitals";
+import Collection from "./pages/Collection";
+import OrgInventory from "./pages/OrgInventory";
 
 function App() {
   return (
@@ -81,10 +82,10 @@ function App() {
           }
         />
         <Route
-          path="/consumer"
+          path="/collection"
           element={
             <ProtectedRoute>
-              <Consumer />
+              <Collection />
             </ProtectedRoute>
           }
         />
@@ -116,7 +117,7 @@ function App() {
           path="/"
           element={
             <ProtectedRoute>
-              <HomePage />
+              <OrgInventory />
             </ProtectedRoute>
           }
         />

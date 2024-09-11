@@ -80,11 +80,11 @@ const Sidebar = () => {
           {user?.role === "hospital" && (
             <div
               className={`menu-item ${
-                location.pathname === "/consumer" && "active"
+                location.pathname === "/collection" && "active"
               }`}
             >
               <i className="fa-sharp fa-solid fa-building-ngo"></i>
-              <Link to="/consumer">Collection</Link>
+              <Link to="/collection">Collection</Link>
             </div>
           )}
           {user?.role === "donar" && (
