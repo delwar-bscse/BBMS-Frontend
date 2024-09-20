@@ -12,8 +12,11 @@ const Modal = () => {
   // handle modal data
   const handleModalSubmit = async () => {
     try {
-      if (!bloodGroup || !quantity) {
+      if (!bloodGroup || !email ) {
         return alert("Please Provide All Fields");
+      }
+      if ( 0>=quantity ) {
+        return alert("Blood quantity must be 1 ml or more");
       }
       const {data} = await API.post("/inventory/create-inventory", {
         email,
@@ -29,7 +32,7 @@ const Modal = () => {
     } catch (error) {
       alert(error.response.data.message);
       console.log(error);
-      window.location.reload();
+      // window.location.reload();
     }
   };
 
